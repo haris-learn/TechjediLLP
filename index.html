@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechJedi LLP — WhatsApp Business Solutions</title>
+  <meta name="description" content="TechJedi LLP provides WhatsApp Business API solutions to help companies communicate with their customers at scale." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0d0f0e;
+      --white: #f7f9f7;
+      --green: #25d366;
+      --green-dark: #128c4e;
+      --green-pale: #e8faf0;
+      --gray: #6b7280;
+      --border: #e5e8e5;
+      --text: #1a1f1a;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); line-height: 1.6; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(247,249,247,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5vw;
+      display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .nav-logo { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--black); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+    .logo-dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; display: inline-block; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 14px; font-weight: 500; color: var(--gray); text-decoration: none; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--green-dark); }
+    .nav-cta { background: var(--green); color: #fff; padding: 9px 20px; border-radius: 50px; font-size: 14px; font-weight: 600; text-decoration: none; transition: background 0.15s; }
+    .nav-cta:hover { background: var(--green-dark); }
+
+    /* HERO */
+    .hero {
+      min-height: 88vh; display: flex; align-items: center;
+      padding: 80px 5vw; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -200px; right: -200px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(37,211,102,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 700px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green-pale); border: 1px solid rgba(37,211,102,0.3);
+      padding: 6px 14px; border-radius: 50px; font-size: 13px; font-weight: 500;
+      color: var(--green-dark); margin-bottom: 28px;
+    }
+    .hero-badge-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+    h1 { font-family: 'DM Serif Display', serif; font-size: clamp(40px, 5vw, 68px); line-height: 1.1; color: var(--black); margin-bottom: 22px; }
+    h1 em { font-style: italic; color: var(--green-dark); }
+    .hero-sub { font-size: 18px; color: var(--gray); max-width: 520px; margin-bottom: 36px; line-height: 1.7; font-weight: 300; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary { background: var(--green); color: #fff; padding: 14px 28px; border-radius: 50px; font-size: 15px; font-weight: 600; text-decoration: none; transition: all 0.15s; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-primary:hover { background: var(--green-dark); transform: translateY(-1px); }
+    .btn-outline { border: 1.5px solid var(--border); color: var(--text); padding: 14px 28px; border-radius: 50px; font-size: 15px; font-weight: 500; text-decoration: none; transition: all 0.15s; }
+    .btn-outline:hover { border-color: var(--green); color: var(--green-dark); }
+    .hero-stats { display: flex; gap: 40px; margin-top: 52px; padding-top: 40px; border-top: 1px solid var(--border); }
+    .stat-num { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--black); }
+    .stat-label { font-size: 13px; color: var(--gray); margin-top: 2px; }
+
+    /* FEATURES */
+    section { padding: 90px 5vw; }
+    .section-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-dark); margin-bottom: 14px; }
+    h2 { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 3vw, 44px); color: var(--black); margin-bottom: 16px; line-height: 1.2; }
+    .section-sub { font-size: 16px; color: var(--gray); max-width: 480px; font-weight: 300; }
+
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 52px; }
+    .feature-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 28px;
+      transition: all 0.2s;
+    }
+    .feature-card:hover { border-color: var(--green); box-shadow: 0 8px 32px rgba(37,211,102,0.1); transform: translateY(-3px); }
+    .feature-icon { font-size: 28px; margin-bottom: 16px; }
+    .feature-title { font-weight: 600; font-size: 17px; margin-bottom: 8px; color: var(--black); }
+    .feature-desc { font-size: 14px; color: var(--gray); line-height: 1.65; }
+
+    /* HOW IT WORKS */
+    .how-bg { background: var(--black); color: var(--white); }
+    .how-bg h2 { color: var(--white); }
+    .how-bg .section-label { color: var(--green); }
+    .how-bg .section-sub { color: #9ca3af; }
+    .steps { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0; margin-top: 52px; }
+    .step { padding: 28px; border-right: 1px solid rgba(255,255,255,0.08); position: relative; }
+    .step:last-child { border-right: none; }
+    .step-num { font-family: 'DM Serif Display', serif; font-size: 48px; color: rgba(37,211,102,0.3); line-height: 1; margin-bottom: 14px; }
+    .step-title { font-weight: 600; font-size: 16px; color: #fff; margin-bottom: 8px; }
+    .step-desc { font-size: 14px; color: #9ca3af; line-height: 1.65; }
+
+    /* USE CASES */
+    .usecases-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 52px; }
+    .usecase { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 22px 24px; display: flex; gap: 16px; align-items: flex-start; transition: all 0.2s; }
+    .usecase:hover { border-color: var(--green); }
+    .usecase-icon { font-size: 24px; flex-shrink: 0; }
+    .usecase-title { font-weight: 600; font-size: 15px; color: var(--black); margin-bottom: 5px; }
+    .usecase-desc { font-size: 13px; color: var(--gray); }
+
+    /* CTA SECTION */
+    .cta-section { background: var(--green-pale); border-top: 1px solid rgba(37,211,102,0.2); border-bottom: 1px solid rgba(37,211,102,0.2); text-align: center; }
+    .cta-section h2 { max-width: 600px; margin: 0 auto 20px; }
+    .cta-section .section-sub { margin: 0 auto 36px; text-align: center; }
+
+    /* FOOTER */
+    footer {
+      background: var(--black); color: #9ca3af; padding: 48px 5vw 32px;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+    }
+    .footer-brand { font-family: 'DM Serif Display', serif; font-size: 20px; color: #fff; margin-bottom: 12px; }
+    .footer-desc { font-size: 14px; line-height: 1.7; }
+    .footer-heading { font-size: 13px; font-weight: 600; color: #fff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: 14px; color: #9ca3af; text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: var(--green); }
+    .footer-bottom { background: var(--black); padding: 16px 5vw; border-top: 1px solid rgba(255,255,255,0.07); text-align: center; font-size: 13px; color: #6b7280; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-stats { flex-wrap: wrap; gap: 24px; }
+      .usecases-grid { grid-template-columns: 1fr; }
+      footer { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .step { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+    .hero-inner > * { animation: fadeUp 0.6s ease both; }
+    .hero-badge { animation-delay: 0s; }
+    h1 { animation-delay: 0.1s; }
+    .hero-sub { animation-delay: 0.2s; }
+    .hero-actions { animation-delay: 0.3s; }
+    .hero-stats { animation-delay: 0.4s; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo"><span class="logo-dot"></span> TechJedi LLP</a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#usecases">Use cases</a></li>
+  </ul>
+  <a href="mailto:contact@techjedi.in" class="nav-cta">Contact Us</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      WhatsApp Business API Partner
+    </div>
+    <h1>Business messaging<br/>that <em>actually works</em></h1>
+    <p class="hero-sub">
+      TechJedi LLP helps businesses send transactional alerts, promotional campaigns, and support messages through the official WhatsApp Business API — reliably and at scale.
+    </p>
+    <div class="hero-actions">
+      <a href="mailto:contact@techjedi.in" class="btn-primary">💬 Get Started</a>
+      <a href="#features" class="btn-outline">See Features →</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">99%</div>
+        <div class="stat-label">Message delivery rate</div>
+      </div>
+      <div>
+        <div class="stat-num">5s</div>
+        <div class="stat-label">Average delivery time</div>
+      </div>
+      <div>
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">API availability</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-label">Platform Features</div>
+  <h2>Everything you need to<br/>automate WhatsApp</h2>
+  <p class="section-sub">Built on Meta's official WhatsApp Cloud API, our platform gives you full control over your messaging.</p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">✉️</div>
+      <div class="feature-title">Single & Bulk Messaging</div>
+      <div class="feature-desc">Send individual messages or run bulk campaigns to thousands of opted-in contacts with smart rate limiting.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📋</div>
+      <div class="feature-title">Message Templates</div>
+      <div class="feature-desc">Use pre-approved Meta templates for transactional messages, OTPs, order updates, and promotional content.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <div class="feature-title">Delivery Analytics</div>
+      <div class="feature-desc">Real-time status tracking — sent, delivered, read, and failed — powered by Meta webhook callbacks.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">👥</div>
+      <div class="feature-title">Contact Management</div>
+      <div class="feature-desc">Import contacts via CSV, manage opt-in lists, and segment your audience for targeted campaigns.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔒</div>
+      <div class="feature-title">Official API — No Bans</div>
+      <div class="feature-desc">We use only the official Meta WhatsApp Business API. Zero risk of number bans or account suspensions.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <div class="feature-title">REST API Access</div>
+      <div class="feature-desc">Integrate with your existing systems via our simple REST API. Send messages directly from your backend.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="how-bg">
+  <div class="section-label">How It Works</div>
+  <h2>Up and running in minutes</h2>
+  <p class="section-sub">Simple setup, powerful results. No technical complexity.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-title">Connect your number</div>
+      <div class="step-desc">Link your WhatsApp Business number through the Meta Cloud API dashboard.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title">Upload contacts</div>
+      <div class="step-desc">Import your opt-in customer list via CSV or add contacts manually.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title">Create a campaign</div>
+      <div class="step-desc">Write your message or pick an approved template, then select your audience.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-title">Send & track</div>
+      <div class="step-desc">Launch your campaign and watch delivery status update in real time.</div>
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section id="usecases">
+  <div class="section-label">Use Cases</div>
+  <h2>Built for every industry</h2>
+  <p class="section-sub">From e-commerce to healthcare, businesses trust WhatsApp to reach customers.</p>
+
+  <div class="usecases-grid">
+    <div class="usecase">
+      <div class="usecase-icon">🛒</div>
+      <div>
+        <div class="usecase-title">Order Notifications</div>
+        <div class="usecase-desc">Confirm orders, send shipping updates, and collect delivery feedback automatically.</div>
+      </div>
+    </div>
+    <div class="usecase">
+      <div class="usecase-icon">🏥</div>
+      <div>
+        <div class="usecase-title">Appointment Reminders</div>
+        <div class="usecase-desc">Reduce no-shows with automated appointment confirmations and reminders.</div>
+      </div>
+    </div>
+    <div class="usecase">
+      <div class="usecase-icon">🔑</div>
+      <div>
+        <div class="usecase-title">OTP & Authentication</div>
+        <div class="usecase-desc">Send one-time passwords and login alerts securely through WhatsApp.</div>
+      </div>
+    </div>
+    <div class="usecase">
+      <div class="usecase-icon">📣</div>
+      <div>
+        <div class="usecase-title">Promotional Campaigns</div>
+        <div class="usecase-desc">Run targeted marketing campaigns to opted-in customers with high open rates.</div>
+      </div>
+    </div>
+    <div class="usecase">
+      <div class="usecase-icon">💳</div>
+      <div>
+        <div class="usecase-title">Payment Alerts</div>
+        <div class="usecase-desc">Notify customers about payment confirmations, invoices, and due reminders.</div>
+      </div>
+    </div>
+    <div class="usecase">
+      <div class="usecase-icon">🎓</div>
+      <div>
+        <div class="usecase-title">Course & Event Updates</div>
+        <div class="usecase-desc">Keep students and attendees informed with schedules, materials, and alerts.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="section-label">Get Started</div>
+  <h2>Ready to reach your customers on WhatsApp?</h2>
+  <p class="section-sub">Contact us today and we'll help you get set up with the WhatsApp Business API.</p>
+  <a href="mailto:contact@techjedi.in" class="btn-primary" style="font-size:16px; padding:16px 36px;">
+    💬 Talk to us
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">TechJedi LLP</div>
+    <p class="footer-desc">
+      TechJedi LLP is a technology company providing WhatsApp Business API solutions to businesses across India.
+      We are an official Meta app developer registered under India's LLP Act.
+    </p>
+    <p style="margin-top:16px; font-size:13px;">📧 contact@techjedi.in</p>
+  </div>
+  <div>
+    <div class="footer-heading">Company</div>
+    <ul class="footer-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#usecases">Use Cases</a></li>
+      <li><a href="mailto:contact@techjedi.in">Contact</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-heading">Legal</div>
+    <ul class="footer-links">
+      <li><a href="privacy-policy.html">Privacy Policy</a></li>
+      <li><a href="terms.html">Terms of Service</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  © 2025 TechJedi LLP. All rights reserved. | Registered in India
+</div>
+
+</body>
+</html>
